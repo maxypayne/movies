@@ -1,0 +1,170 @@
+@import "./variables";
+#header {
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  @include media(desktop) {
+    width: 100%;
+    height: 78px;
+    background-color: #062541;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 900;
+    .headerContainer {
+      width: 980px;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      position: relative;
+      .logoContainer {
+        flex-shrink: 0;
+        height: 100%;
+        align-self: flex-start;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 154px;
+          height: auto;
+        }
+      }
+      .menu {
+        margin-left: 50px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-size: 14px;
+        .link {
+          color: white;
+          font-weight: 600;
+          display: flex;
+          height: 100%;
+          align-items: center;
+          text-align: center;
+          max-width: 140px;
+          padding: 0 20px;
+          &.active {
+            border-bottom: 3px solid $yellowD7;
+          }
+        }
+      }
+      .icons {
+        cursor: pointer;
+        color: white;
+        font-size: 30px;
+        margin-left: auto;
+      }
+      .dropDownContainer {
+        padding: 20px;
+        position: absolute;
+        box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        top: 78px;
+        width: 100%;
+        background-color: white;
+        border-radius: 0 0 10px 10px;
+        .searchInput {
+          border-radius: 5px;
+          padding: 10px;
+          border: 1px solid $greyE1;
+          width: 100%;
+          font-size: 18px;
+          &::placeholder {
+            color: $grey81;
+          }
+        }
+        .searchList {
+          overflow: scroll;
+          height: calc(100% - 70px);
+          margin-top: 20px;
+          .item {
+            width: 100%;
+            display: block;
+            padding: 5px 0;
+            &:hover {
+              background-color: #ede8e8;
+            }
+          }
+        }
+      }
+    }
+  }
+  @include media(mobile) {
+    width: 100%;
+    height: 78px;
+    background-color: $greyF7;
+    border-bottom: 1px solid $greyCB;
+    display: flex;
+    z-index: 900;
+    &.fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+    .headerContainer {
+      padding: 0 20px;
+      display: flex;
+      position: relative;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      .logoContainer {
+        flex-shrink: 0;
+        margin-right: auto;
+        img {
+          width: auto;
+          height: 50px;
+        }
+      }
+      .menu {
+        margin: 0;
+        padding: 20px;
+        position: fixed;
+        top: 78px;
+        left: 0;
+        height: calc(100vh - 78px);
+        background: white;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        .link {
+          font-weight: 600;
+          height: 48px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+        }
+      }
+      .icon-menu, .icon-close {
+        font-size: 30px;
+        color: #6d6e6b;
+        margin-left: 20px;
+      }
+      .contactModal {
+        margin-top: auto;
+        margin-bottom: 30px;
+        align-self: center;
+        display: flex;
+      }
+      .contactNumber {
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .label {
+          font-size: 12px;
+          color: $yellowD7;
+        }
+        .number {
+          flex-shrink: 0;
+          color: $yellowD7;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
