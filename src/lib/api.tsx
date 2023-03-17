@@ -1,21 +1,66 @@
 import axios from 'axios';
 
 export const getData = (path: string, params?: string) => new Promise(async (resolve, reject) => {
-  console.log(process.env.API_KEY);
-  const url = process.env.REACT_APP_API_URL;
-  const key = process.env.REACT_APP_API_KEY;
-  const uri = `${url}/${path}?api_key=${key}${params || ''}&append_to_response=images`;
-  const { data }: any = await axios.get(uri).catch(e => {
+  const key = process.env.REACT_APP_MOVIES_API_KEY;
+  const moviesUrl = process.env.REACT_APP_MOVIES_API_URL;
+  const url = `${moviesUrl}/${path}?api_key=${key}${params || ''}`;
+  const response: any = await axios.get(url).catch(() => null);
+  return resolve(response?.data || null);
+})
+
+ 
+export const getImage = (path: string | undefined, type: 'poster' | 'face' | 'big') => {
+  const types = {
+    poster: 'w300',
+    face: 'w138_and_h175_face',
+    big: 'w1920_and_h800_multi_faces',
+  }
+  return `${process.env.REACT_APP_IMAGE__URL}/${types[type]}/${path}`
+}
+
+export const minsToHours = (mins: number) => `${Math.floor(mins / 60)}h${mins % 60}m`;
+
+
+export const login = ({email, password}: {email: string, password: string }) => new Promise(async (resolve, reject) => {
+  const url = `${process.env.REACT_APP_API_URL}/auth/login`;
+  const { data }: any = await axios.post(url, {email, password}).catch(e => {
     console.log(e);
     return reject({});
   })
-  console.log(data);
+  
+  if (data?.token) {
+    localStorage.setItem(process.env.REACT_APP_TOKEN_KEY as string, data.token);
+    return resolve(true);
+  }
+  return reject('Something went wrong');
+});
+
+export const signup = ({email, password}: {email: string, password: string }) => new Promise(async (resolve, reject) => {
+  const url = `${process.env.REACT_APP_API_URL}/auth/signup`;
+  const { data }: any = await axios.post(url, {email, password}).catch(e => {
+    console.log(e);
+    return reject({});
+  })
   return resolve(data);
-})
+});
 
-export const getImage = (path: string | undefined, width: number) => {
-  return `https://image.tmdb.org/t/p/w${width}/${path}`
+export const transformDate = (date: string) => {
+  if (date) {
+    const months: any = {
+      0: 'January',
+      1: 'February',
+      2: 'March',
+      3: 'April',
+      4: 'May',
+      5: 'June',
+      6: 'July',
+      7: 'August',
+      8: 'September',
+      9: 'October',
+      10: 'November',
+      11: 'December',
+    }
+    const newDate = new Date(date);
+    return `${('0' + newDate.getDate()).slice(-2)} ${months[newDate.getMonth()]} ${newDate.getFullYear()}`;
+  }
 }
-
-
-export const minsToHours = (mins: number) => `${Math.floor(mins / 60)}h${mins % 60}m`;

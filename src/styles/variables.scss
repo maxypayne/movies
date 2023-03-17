@@ -45,7 +45,7 @@ body {
   &.icon-arrow_outward:before { content: "\e902" }
   &.icon-chevron_right:before { content: "\e903" }
   &.icon-chevron_left:before { content: "\e904" }
-  &.icon-linkedin:before { content: "\eaca" }
+  &.icon-user:before { content: "\e971" }
   &.icon-done:before { content: "\e905" }
   &.icon-search_off:before { content: "\e906" }
   &.icon-add:before { content: "\e907" }
@@ -54,6 +54,8 @@ body {
   &.icon-close:before { content: "\e90a" }
   &.icon-menu:before { content: "\e90b" }
   &.icon-search:before { content: "\e900" }
+  &.icon-logout:before { content: "\ea14" }
+  &.icon-star:before { content: "\e9d9" }
 }
 
 //COLORS
@@ -61,11 +63,13 @@ $greyF7: #F7F5F5;
 $greyCB: #CBCBCB;
 $grey79: #797979;
 $grey21: #212529;
+$grey1F: #1F2632;
 $yellowEB: #EBBE23;
 $yellowE1: #E1A032;
 $yellowD7: #D77D37;
 $orangeE2: #E27622;
 $redCD: #CD5537;
+$grey52: #525A6E;
 $redC3: #C32737;
 .white { color: white }
 .error { color: $redC3 }
@@ -101,3 +105,4 @@ $shadow38-04: rgba(38, 40, 45, 0.4);
 $shadow38-08: rgba(38, 40, 45, 0.8);
 $rgba25: rgba(25,157,255,0.05);
 
+$box-shadow:  rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;

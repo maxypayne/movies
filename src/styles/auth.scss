@@ -1,0 +1,33 @@
+@import './variables.scss';
+
+.auth {
+  padding-top: 50px;
+  .authContainer {
+    .authForm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .authCta {
+        padding: 10px 30px;
+        background-color: #062541;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease-in;
+        margin-top: 20px;
+      }
+      input {
+        border-radius: 5px;
+        width: 400px;
+        padding: 10px;
+        border: 1px solid $greyE1;
+        margin-bottom: 20px;
+      }
+      .suggestion {
+        margin-top: 10px;
+        cursor: pointer;
+        color: $orangeE2;
+      }
+    }
+  }
+}
