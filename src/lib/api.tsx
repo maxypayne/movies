@@ -15,7 +15,7 @@ export const getImage = (path: string | undefined, type: 'poster' | 'face' | 'bi
     face: 'w138_and_h175_face',
     big: 'w1920_and_h800_multi_faces',
   }
-  return `${process.env.REACT_APP_IMAGE__URL}/${types[type]}/${path}`
+  return `${process.env.REACT_APP_IMAGE_URL}/${types[type]}/${path}`
 }
 
 export const minsToHours = (mins: number) => `${Math.floor(mins / 60)}h${mins % 60}m`;
