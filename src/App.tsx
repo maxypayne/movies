@@ -1,36 +1,61 @@
 import './styles/reset.scss';
 import './styles/home.scss';
-import './styles/card.scss';
+import './styles/movieCard.scss';
 import './styles/header.scss';
 import './styles/variables.scss';
 import './styles/global.scss';
 import './styles/movie.scss';
 import './styles/series.scss';
+import './styles/auth.scss';
+import './styles/actorCard.scss';
+import './styles/actors.scss';
+import './styles/actorPage.scss';
 // import './styles/serie.scss';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './components/Home';
-import { GlobalCtxProvider } from './context/globalCtx';
 import Header from './components/Header';
-import Movie from './components/Movie';
-import Movies from './components/Movies';
-import Series from './components/Series';
-
+import { useDispatch, useSelector} from 'react-redux';
+import { actions } from './context/redux';
+import { useEffect } from 'react';
+import Auth from './components/auth';
+import Film from './components/Film';
+import Films from './components/Films';
+import Actors from './components/Actors';
+import ActorPage from './components/ActorPage';
 
 function App() {
+  const dispatchFunc = useDispatch();
+  const isLog = useSelector((state: any) => state.isLoggedIn);
+  useEffect(() => {
+    function handleWindowResize() {
+      console.log('Resize');
+      dispatchFunc(actions.toggleDesktop(window.innerWidth > 1024));
+    }
+    dispatchFunc(actions.toggleDesktop(window.innerWidth > 1024));
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+  useEffect(() => {
+    const token = localStorage.getItem(process.env.REACT_APP_TOKEN_KEY as string);
+    dispatchFunc(actions.setIsLogedIn(!!token));
+  }, []);
   return (
-    <GlobalCtxProvider>
+    <div className="page">
       <BrowserRouter>
         <Header/>
         <Routes>
           <Route index element={<Home />} />
-          <Route path='home' element={<Home />} />
-          <Route path='series' element={<Series />} />
-          <Route path='series/:id' element={<Series />} />
-          <Route path='films/' element={<Movies />} />
-          <Route path='films/:id' element={<Movie />} />
+          {!isLog && <Route path='auth' element={<Auth />} />}
+          <Route path='films' element={<Films />} />
+          <Route path='actors' element={<Actors />} />
+          <Route path='actors/:id' element={<ActorPage />} />
+          <Route path='films/:id' element={<Film />} />
+          <Route path="*" element={<Home />} />
         </Routes>
-      </BrowserRouter>
-    </GlobalCtxProvider>
+        </BrowserRouter>
+    </div>
   );
 }
 

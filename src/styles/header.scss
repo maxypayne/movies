@@ -53,11 +53,21 @@
           }
         }
       }
-      .icons {
-        cursor: pointer;
-        color: white;
-        font-size: 30px;
+      .iconsContainer {
         margin-left: auto;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        .icons {
+          cursor: pointer;
+          color: white;
+          font-size: 30px;
+        }
+        .icon-logout {
+          color: white;
+          cursor: pointer;
+          font-size: 24px;
+        }
       }
       .dropDownContainer {
         padding: 20px;

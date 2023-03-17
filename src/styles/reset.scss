@@ -1,8 +1,10 @@
+@import './variables.scss';
 * {
   box-sizing: border-box;
   scroll-behavior: smooth
 }
 body {
+  background-color: $grey1F;
   font-family: 'Roboto Light', sans-serif, Arial;
   font-style: normal;
   font-weight: 300;

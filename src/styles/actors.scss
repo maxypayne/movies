@@ -1,0 +1,11 @@
+.actors {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .actorsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 980px;
+    gap: 20px;
+  }
+}
