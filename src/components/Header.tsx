@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GlobalCtx } from "../context/globalCtx";
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.png';
 import { getData } from "../lib/api";
-import { MovieInterface } from "../interfaces/Movie";
+import { MovieInterface } from "../interfaces/Interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../context/redux";
 
@@ -15,10 +15,10 @@ export const Header = () => {
   const navigate = useNavigate();
   const desktop = useSelector((state: any) => state.desktop);
   const dispatchFunc = useDispatch();
-  const isLog = useSelector((state: any) => state.isLoggedIn);
+  const isLog = useSelector((state: any) => state.user?.token);
   const logout = () => {
     localStorage.clear();
-    dispatchFunc(actions.setIsLogedIn(false));
+    dispatchFunc(actions.setUser({}));
     navigate('/');
   }
   const [isOpen, setIsOpen]: any = useState();
@@ -44,17 +44,18 @@ export const Header = () => {
           <img src={logo} alt={'Logo'}/>
         </Link>
         { (desktop || (!desktop && isOpen)) && <ul className="menu">
-          {links.map(({path, label}, key) => <Link className="link" key={'link' + key} to={`/${path}`}>{label}</Link>)}
+            {links.map(({path, label}, key) => <Link className="link" onClick={() => setIsOpen(false)} key={'link' + key} to={`/${path}`}>{label}</Link>)}
+            {!desktop && <span className="link error" onClick={logout}>Logout</span>}
           </ul>
         }
-        
         <div className="iconsContainer">
-          {isLog ? <span className="icons icon-logout" onClick={logout} /> : <Link to="/auth" className="icons icon-user"></Link>}     
-          {!desktop && <span className={`icons icon-${isOpen ? 'close' : 'menu'}`} onClick={() => setIsOpen(!isOpen)}/>}
+          {isLog && desktop && <span className="icons icon-logout" onClick={logout} />}
+          {!isLog && <Link to="/auth" className="icons icon-user"></Link>}     
           {isSearchOpen
             ? <span className="icons icon-close" onClick={() => setIsSearchOpen(false)}/>
             : <span className="icons icon-search" onClick={() => setIsSearchOpen(true)}/> 
           }
+          {!desktop && <span className={`icons icon-${isOpen ? 'close' : 'menu'}`} onClick={() => setIsOpen(!isOpen)}/>}
         </div>
         { isSearchOpen && <div className="dropDownContainer">
           <input type="text" className="searchInput" placeholder="Recherche..." onChange={searchMovies} />

@@ -72,7 +72,7 @@ $redCD: #CD5537;
 $grey52: #525A6E;
 $redC3: #C32737;
 .white { color: white }
-.error { color: $redC3 }
+.error { color: $redC3 !important }
 .succes { color: $orangeE2; text-align: center; }
 
 $white-15: rgba(255, 255, 255, 0.15);

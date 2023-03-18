@@ -82,3 +82,10 @@ export interface MovieInterface {
   vote_average?: number;
   vote_count?: number;
 }
+
+
+export interface User {
+  username?: string;
+  email?: string;
+  password?: string;
+}

@@ -5,7 +5,7 @@ import './styles/header.scss';
 import './styles/variables.scss';
 import './styles/global.scss';
 import './styles/movie.scss';
-import './styles/series.scss';
+import './styles/films.scss';
 import './styles/auth.scss';
 import './styles/actorCard.scss';
 import './styles/actors.scss';
@@ -39,7 +39,8 @@ function App() {
   }, []);
   useEffect(() => {
     const token = localStorage.getItem(process.env.REACT_APP_TOKEN_KEY as string);
-    dispatchFunc(actions.setIsLogedIn(!!token));
+    const username = localStorage.getItem(process.env.REACT_APP_USERNAME as string);
+    dispatchFunc(actions.setUser({isLog: !!token,  username}));
   }, []);
   return (
     <div className="page">

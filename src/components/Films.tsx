@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { MovieInterface } from "../interfaces/Movie";
+import { MovieInterface } from "../interfaces/Interfaces";
 import { getData } from "../lib/api";
 import MovieCard from "./common/MovieCard";
 
@@ -14,7 +14,7 @@ const Films = () => {
     getMovieHandler();
   }, [getMovieHandler]);
   return <div className="page movies">
-    <div className="seriesContainer">
+    <div className="filmsContainer">
       {!!films.length && films.map((movie, key) => <MovieCard key={'card' + key} movie={movie}/>)}
     </div>
   </div>

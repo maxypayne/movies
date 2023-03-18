@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MovieInterface, ActorInterface } from "../../interfaces/Movie";
+import { ActorInterface } from "../../interfaces/Interfaces";
 import { getImage } from "../../lib/api";
 import Review from "./Review";
 

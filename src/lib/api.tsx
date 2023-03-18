@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { User } from '../interfaces/Interfaces';
 
 export const getData = (path: string, params?: string) => new Promise(async (resolve, reject) => {
   const key = process.env.REACT_APP_MOVIES_API_KEY;
@@ -21,23 +22,27 @@ export const getImage = (path: string | undefined, type: 'poster' | 'face' | 'bi
 export const minsToHours = (mins: number) => `${Math.floor(mins / 60)}h${mins % 60}m`;
 
 
-export const login = ({email, password}: {email: string, password: string }) => new Promise(async (resolve, reject) => {
+export const login = ({email, password}: User) => new Promise(async (resolve, reject) => {
   const url = `${process.env.REACT_APP_API_URL}/auth/login`;
   const { data }: any = await axios.post(url, {email, password}).catch(e => {
     console.log(e);
     return reject({});
   })
+  console.log({data});
   
   if (data?.token) {
     localStorage.setItem(process.env.REACT_APP_TOKEN_KEY as string, data.token);
-    return resolve(true);
+    localStorage.setItem(process.env.REACT_APP_USERNAME as string, data.username);
+    return resolve(data);
+  } else if(data?.errMessage) {
+    return resolve(data);
   }
   return reject('Something went wrong');
 });
 
-export const signup = ({email, password}: {email: string, password: string }) => new Promise(async (resolve, reject) => {
+export const signup = ({email, password, username }: User) => new Promise(async (resolve, reject) => {
   const url = `${process.env.REACT_APP_API_URL}/auth/signup`;
-  const { data }: any = await axios.post(url, {email, password}).catch(e => {
+  const { data }: any = await axios.post(url, {email, password, username}).catch(e => {
     console.log(e);
     return reject({});
   })

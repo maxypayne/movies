@@ -1,39 +1,21 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
-// import React, { useLayoutEffect, useState } from 'react';
 
-// function useWindowSize() {
-//   const [size, setSize] = useState([0, 0]);
-//   useLayoutEffect(() => {
-//     function updateSize() {
-//       setSize([window.innerWidth, window.innerHeight]);
-//     }
-//     window.addEventListener('resize', updateSize);
-//     updateSize();
-//     return () => window.removeEventListener('resize', updateSize);
-//   }, []);
-//   console.log({size});
-  
-//   return size;
-// }
-
-// useWindowSize();
-
-const desktopSlice = createSlice({
+const slice = createSlice({
   name: 'desktop',
-  initialState: { desktop: false, isLoggedIn: false },
+  initialState: { desktop: false, user: {} },
   reducers: {
     toggleDesktop(state, action) {
       state.desktop = action.payload;
     },
-    setIsLogedIn(state, action){
-      state.isLoggedIn = action.payload;
+    setUser(state, action){
+      state.user = action.payload;
     }
   }
 });
 
 
 export const store = configureStore({
-  reducer: desktopSlice.reducer,
+  reducer: slice.reducer,
 });
 
-export const actions = desktopSlice.actions;
+export const actions = slice.actions;

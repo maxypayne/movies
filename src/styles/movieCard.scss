@@ -2,7 +2,8 @@
 .movieCard {
   width: 310px;
   box-shadow: $box-shadow;
-  border-radius: 10px;
+  border-radius: 20px;
+  overflow: hidden;
   cursor: pointer;
   .imgContainer {
     height: 450px;

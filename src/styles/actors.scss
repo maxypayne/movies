@@ -1,11 +1,30 @@
 .actors {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  .actorsContainer {
+  
+}
+
+@import './variables.scss';
+.actors {
+  @include media(desktop) {
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
-    width: 980px;
-    gap: 20px;
+    justify-content: center;
+    .actorsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      width: 980px;
+      gap: 20px;
+    }
+  }
+  @include media(mobile) {
+    padding: 60px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .actorsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      gap: 20px;
+    }
   }
 }

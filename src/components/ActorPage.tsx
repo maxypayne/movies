@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MovieInterface, ActorInterface } from "../interfaces/Movie";
+import { MovieInterface, ActorInterface } from "../interfaces/Interfaces";
 import { getData, getImage } from "../lib/api";
 
 const ActorPage = () => {
@@ -39,10 +39,10 @@ const ActorPage = () => {
         <div className="castContainer">
           <h2 className="castContainerTitle">Acting</h2>
           <div className="castList">
-          {actor.combined_credits?.cast?.map(cast => {
+          {actor.combined_credits?.cast?.map((cast, key) => {
             if (!cast.character || !cast.release_date || !cast.title) return;
             return (
-              <div className="cast">
+              <div className="cast" key={'cast'+key}>
                 <p className="castDate">{cast.release_date}</p>
                 <p className="castTitle">{cast.title}</p>
                 <p className="castChar">as {cast.character}</p>

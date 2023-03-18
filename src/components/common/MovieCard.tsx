@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MovieInterface } from "../../interfaces/Movie";
+import { MovieInterface } from "../../interfaces/Interfaces";
 import { getImage } from "../../lib/api";
 
 interface Props {

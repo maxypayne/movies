@@ -1,0 +1,16 @@
+@import './variables.scss';
+.filmsContainer {
+  @include media(desktop) {
+    display: flex;
+    flex-wrap: wrap;
+    width: 980px;
+    gap: 20px;
+  }
+  @include media(mobile) {
+    padding-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-evenly;
+  }
+}

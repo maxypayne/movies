@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { ReviewInterface } from "../../interfaces/Movie";
+import { ReviewInterface } from "../../interfaces/Interfaces";
 import { getImage, transformDate } from "../../lib/api";
 
 interface Props {
