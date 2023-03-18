@@ -11,7 +11,6 @@ const ActorPage = () => {
   const getDataHandler = useCallback(async () => {
     setIsLoading(true);
     const data = await getData(`/person/${id}`, '&append_to_response=combined_credits');
-    console.log({data});
     if (data) {
       setMovie(data);
     } else {

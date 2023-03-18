@@ -43,11 +43,13 @@ export const Header = () => {
         <Link to='/' className="logoContainer">
           <img src={logo} alt={'Logo'}/>
         </Link>
-        { (desktop || (!desktop && isOpen)) && <ul className="menu">
-            {links.map(({path, label}, key) => <Link className="link" onClick={() => setIsOpen(false)} key={'link' + key} to={`/${path}`}>{label}</Link>)}
-            {!desktop && <span className="link error" onClick={logout}>Logout</span>}
-          </ul>
-        }
+        <div className="menuContainer">
+          { (desktop || (!desktop && isOpen)) && <ul className="menu">
+              {links.map(({path, label}, key) => <Link className="link" onClick={() => setIsOpen(false)} key={'link' + key} to={`/${path}`}>{label}</Link>)}
+              {!desktop && <span className="link error" onClick={logout}>Logout</span>}
+            </ul>
+          }
+        </div>
         <div className="iconsContainer">
           {isLog && desktop && <span className="icons icon-logout" onClick={logout} />}
           {!isLog && <Link to="/auth" className="icons icon-user"></Link>}     

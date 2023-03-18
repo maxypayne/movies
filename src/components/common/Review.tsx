@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { ReviewInterface } from "../../interfaces/Interfaces";
 import { getImage, transformDate } from "../../lib/api";
 

@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { ActorInterface } from "../interfaces/Interfaces";
 import { getData } from "../lib/api";
-import Card from "./common/MovieCard";
 import ActorCard from "./common/ActorCard";
 
 const Actors = () => {
