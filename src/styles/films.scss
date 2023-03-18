@@ -1,6 +1,7 @@
 @import './variables.scss';
 .filmsContainer {
   @include media(desktop) {
+    padding-top: 50px;
     display: flex;
     flex-wrap: wrap;
     width: 980px;

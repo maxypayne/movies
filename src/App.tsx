@@ -43,7 +43,6 @@ function App() {
     dispatchFunc(actions.setUser({isLog: !!token,  username}));
   }, []);
   return (
-    <div className="page">
       <BrowserRouter>
         <Header/>
         <Routes>
@@ -55,8 +54,7 @@ function App() {
           <Route path='films/:id' element={<Film />} />
           <Route path="*" element={<Home />} />
         </Routes>
-        </BrowserRouter>
-    </div>
+      </BrowserRouter>
   );
 }
 
