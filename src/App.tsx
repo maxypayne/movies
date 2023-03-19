@@ -40,7 +40,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem(process.env.REACT_APP_TOKEN_KEY as string);
     const username = localStorage.getItem(process.env.REACT_APP_USERNAME as string);
-    dispatchFunc(actions.setUser({isLog: !!token,  username}));
+    dispatchFunc(actions.setUser({token,  username}));
   }, []);
   return (
       <BrowserRouter>
