@@ -27,7 +27,6 @@ function App() {
   const dispatchFunc = useDispatch();
   const isLog = useSelector((state: any) => state.isLoggedIn);
   const handleWindowResize = () =>{
-    console.log('Resize');
     dispatchFunc(actions.toggleDesktop(window.innerWidth > 1024));
   }
   useEffect(() => {

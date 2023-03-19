@@ -12,7 +12,6 @@ const Films = () => {
   }, []);
   const getGenres = useCallback(async () => {
     const data: any = await getData(`/genre/movie/list`).catch(() => null);;
-    console.log(data);
     setGenres(data?.genres ? data.genres : []);
   }, []);
   const getByGenre = async (id: number) => {

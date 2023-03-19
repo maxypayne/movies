@@ -24,12 +24,7 @@ export const minsToHours = (mins: number) => `${Math.floor(mins / 60)}h${mins % 
 
 export const login = ({email, password}: User) => new Promise(async (resolve, reject) => {
   const url = `${process.env.REACT_APP_API_URL}/auth/login`;
-  const { data }: any = await axios.post(url, {email, password}).catch(e => {
-    console.log(e);
-    return reject({});
-  })
-  console.log({data});
-  
+  const { data }: any = await axios.post(url, {email, password}).catch(() => reject({}));
   if (data?.token) {
     localStorage.setItem(process.env.REACT_APP_TOKEN_KEY as string, data.token);
     localStorage.setItem(process.env.REACT_APP_USERNAME as string, data.username);
@@ -42,10 +37,7 @@ export const login = ({email, password}: User) => new Promise(async (resolve, re
 
 export const signup = ({email, password, username }: User) => new Promise(async (resolve, reject) => {
   const url = `${process.env.REACT_APP_API_URL}/auth/signup`;
-  const { data }: any = await axios.post(url, {email, password, username}).catch(e => {
-    console.log(e);
-    return reject({});
-  })
+  const { data }: any = await axios.post(url, {email, password, username}).catch(() => reject({}))
   return resolve(data);
 });
 

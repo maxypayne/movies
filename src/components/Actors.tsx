@@ -7,7 +7,6 @@ const Actors = () => {
   const [actors, setActors]: [ActorInterface[], any] = useState([]);
   const getDataHandler = useCallback(async () => {
     const data: any = await getData(`/person/popular`);
-    console.log(data);
     setActors(data.results);
   }, []);
   useEffect((): any => {
