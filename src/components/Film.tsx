@@ -13,7 +13,7 @@ const Film = () => {
   const desktop = useSelector((state: any) => state.desktop);
   const getMovieHandler = useCallback(async () => {
     setIsLoading(true);
-    const data = await getData(`/movie/${id}`, '&append_to_response=credits,reviews,keyword,images');
+    const data = await getData(`/movie/${id}`, '&append_to_response=credits,reviews,keywords,images');
     console.log({data});
     if (data) {
       setMovie(data);
@@ -37,12 +37,14 @@ const Film = () => {
             <h1 className="title mb20">{movie?.title}</h1>
             <div className="tagline mb10">{movie.tagline}</div>
             <p className="date mb10">Release date: {movie.release_date}</p>
-            <p className="genres mb10">{movie.genres?.map(({name}, key) => <span key={'genre'+key}>{name}</span>)}</p>
-            <p className="runtime mb10">Duration: {minsToHours(movie.runtime as number)}</p>
-            <div className="popularityContainer">User score: <span className="score">{Math.floor(movie.popularity as number)}%</span></div>
+            <div className="genres mb10">Genres: &nbsp;&nbsp; {movie.genres?.map(({name}) => name).join(' , ')}</div>
+            <p className="greenBack mb10">Duration: {minsToHours(movie.runtime as number)}</p>
+            <div className="popularityContainer mb10">User score: <span className="score">{Math.floor(movie.popularity as number)}%</span></div>
+            <div className="greenBack mb10">Budget: ${movie.budget}</div>
+            <p className="greenBack mb10">Votes: {movie.vote_count}</p>
+            <p className="greenBack mb10">Vote average: {`${movie.vote_average}`.slice(0,3)}</p>
             <h2>Overview</h2>
             <p className="overview mb10">{movie.overview}</p>
-            <div className="budget">$ {movie.budget}</div>
           </div>
         </div>
       </div>

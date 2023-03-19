@@ -8,7 +8,7 @@ const slice = createSlice({
       state.desktop = action.payload;
     },
     setUser(state, action){
-      state.user = action.payload;
+      state.user = {...action.payload, isLog: !!action.payload.token};
     }
   }
 });

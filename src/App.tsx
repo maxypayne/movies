@@ -5,7 +5,7 @@ import './styles/header.scss';
 import './styles/variables.scss';
 import './styles/global.scss';
 import './styles/movie.scss';
-import './styles/films.scss';
+import './styles/filmsPage.scss';
 import './styles/auth.scss';
 import './styles/actorCard.scss';
 import './styles/actors.scss';
@@ -26,11 +26,11 @@ import ActorPage from './components/ActorPage';
 function App() {
   const dispatchFunc = useDispatch();
   const isLog = useSelector((state: any) => state.isLoggedIn);
+  const handleWindowResize = () =>{
+    console.log('Resize');
+    dispatchFunc(actions.toggleDesktop(window.innerWidth > 1024));
+  }
   useEffect(() => {
-    function handleWindowResize() {
-      console.log('Resize');
-      dispatchFunc(actions.toggleDesktop(window.innerWidth > 1024));
-    }
     dispatchFunc(actions.toggleDesktop(window.innerWidth > 1024));
     window.addEventListener("resize", handleWindowResize);
     return () => {

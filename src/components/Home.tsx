@@ -21,7 +21,6 @@ const Home = () => {
   const getDataHandler = useCallback(async () => {
     const promises = helperData.map(({id}) => getData(`/movie/${id}`));
     const data: any = await Promise.all(promises).catch(() => null);
-    console.log(data);
     setMovies(data);
   }, []);
   useEffect((): any => {
@@ -35,7 +34,7 @@ const Home = () => {
           <div className={`movieInfos ${index % 2 ? 'even' : 'odd'}`}>
             <div className="title">{movie.title}</div>
             <p className="content">{movie.overview}</p>
-            <Link to={`/films/${movie.id}`} className="cta">More about</Link>
+            <Link to={`/films/${movie.id}`} className="cta">Learn more</Link>
           </div>
         </div>
       })

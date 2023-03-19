@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GlobalCtx } from "../context/globalCtx";
 import logo from '../assets/logo.png';
 import { getData } from "../lib/api";
-import { MovieInterface } from "../interfaces/Interfaces";
+import { MovieInterface, User } from "../interfaces/Interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../context/redux";
 
@@ -15,7 +15,7 @@ export const Header = () => {
   const navigate = useNavigate();
   const desktop = useSelector((state: any) => state.desktop);
   const dispatchFunc = useDispatch();
-  const isLog = useSelector((state: any) => state.user?.token);
+  const user: User = useSelector((state: any) => state.user);
   const logout = () => {
     localStorage.clear();
     dispatchFunc(actions.setUser({}));
@@ -36,7 +36,6 @@ export const Header = () => {
     {path: 'films', label: 'Films'},
     {path: 'actors', label: 'Actors'},
   ];
-  
   return(
     <header id="header" className={`${isOpen && !desktop ? 'fixed' : ''}`}>
       <div className="headerContainer">
@@ -51,8 +50,13 @@ export const Header = () => {
           }
         </div>
         <div className="iconsContainer">
-          {isLog && desktop && <span className="icons icon-logout" onClick={logout} />}
-          {!isLog && <Link to="/auth" className="icons icon-user"></Link>}     
+          {user.isLog && desktop &&
+            <Fragment>
+              <p className="username white">{user.username}</p>
+              <span className="icons icon-logout" onClick={logout} />
+            </Fragment>
+          }
+          {!user.isLog && <Link to="/auth" className="icons icon-user"></Link>}     
           {isSearchOpen
             ? <span className="icons icon-close" onClick={() => setIsSearchOpen(false)}/>
             : <span className="icons icon-search" onClick={() => setIsSearchOpen(true)}/> 

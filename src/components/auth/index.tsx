@@ -49,7 +49,7 @@ const Auth = () => {
           <input type="email" name="email" placeholder="Email"/>
           <input type="password" name="password" placeholder="Mot de passe"/>
           <button disabled={isWaiting} className="authCta" type="submit">{loginForm ? 'Login' : 'Signup'}</button>
-          <span className="suggestion" onClick={() => setLoginForm(!loginForm)}>{loginForm ? 'Inscrivez-vous maintenant' : 'Connectez vous à votre compte'}</span>
+          <span className="suggestion" onClick={() => setLoginForm(!loginForm)}>{loginForm ? 'Don\'t have an account ?' : 'Already have an account ?'}</span>
           { error && <p className="error">{error}</p> }
         </form>
       </div>
